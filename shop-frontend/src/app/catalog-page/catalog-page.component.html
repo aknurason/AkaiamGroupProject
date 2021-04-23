@@ -1,0 +1,8 @@
+<h1 class="page-title">
+  <ng-container *ngIf="category">Category: {{category.name}}</ng-container>
+  <ng-container *ngIf="!category">Category: All</ng-container>
+</h1>
+
+<div class="products">
+  <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
+</div>

@@ -1,0 +1,64 @@
+<mat-toolbar class="header">
+  <a routerLink="/" class="brand">COLOURNURA</a>
+
+  <div class="flex-spacer"></div>
+
+  <mat-nav-list class="nav">
+    <a routerLink="/" mat-list-item>Home</a>
+    <mat-list-item>
+      <button mat-button [matMenuTriggerFor]="dropdownMenu">Catalog <mat-icon>keyboard_arrow_down</mat-icon></button>
+    </mat-list-item>
+  </mat-nav-list>
+
+  <mat-menu #dropdownMenu="matMenu">
+    <a routerLink="/catalog/" mat-menu-item>All categories</a>
+    <a routerLink="/catalog/category/{{ category.id }}" mat-menu-item *ngFor="let category of categories">
+      {{category.name}}
+    </a>
+  </mat-menu>
+
+  <div class="flex-spacer"></div>
+
+  <button class="cart-button" mat-icon-button [matMenuTriggerFor]="cartMenu">
+    <mat-icon>shopping_basket</mat-icon>
+    <div class="quantity-label">{{cartService.totalItems}}</div>
+  </button>
+
+  <mat-menu #cartMenu="matMenu" class="cart-menu">
+    <ng-container *ngIf="cartService.items.length > 0">
+      <a routerLink="/product/{{item.product.id}}" class="cart-item" mat-menu-item
+        *ngFor="let item of cartService.items">
+        <div class="image-container">
+          <img [src]="item.product.imageURL" alt="product image">
+        </div>
+        <div class="info-block">
+          <div class="title">{{item.product.title}}</div>
+          <div class="price">{{item.product.price * item.quantity | currency: 'KZT '}}</div>
+        </div>
+        <div class="quantity-block" (click)="$event.stopPropagation()">
+          <button mat-icon-button (click)="onCartDecrement($event, item.product.id)">-</button>
+          <div class="quantity">{{item.quantity}}</div>
+          <button mat-icon-button (click)="onCartIncrement($event, item.product.id)">+</button>
+        </div>
+      </a>
+    </ng-container>
+    <div mat-menu-item *ngIf="cartService.items.length === 0">
+      <mat-icon>remove_shopping_cart</mat-icon> Your cart is empty
+    </div>
+  </mat-menu>
+
+  <button class="login-button" mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <mat-menu #profileMenu="matMenu">
+    <ng-container *ngIf="authService.isLoggedOut()">
+      <a mat-menu-item routerLink="/login">Log in</a>
+      <a mat-menu-item routerLink="/register">Register</a>
+    </ng-container>
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <div mat-menu-item class="username">{{authService.getUsername()}}</div>
+      <div mat-menu-item class="logout" (click)="authService.logout()">Log out</div>
+    </ng-container>
+  </mat-menu>
+</mat-toolbar>

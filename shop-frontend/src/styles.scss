@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: Graphik;
+    src: url(assets/fonts/Graphik.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: Styrene;
+    src: url(assets/fonts/StyreneAWeb-Bold.ttf) format("opentype");
+}
+
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config($font-family: 'Graphik, Arial, Helvetica Neue, sans-serif'
+);
+@include mat-core($custom-typography);
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-grey);
+$my-app-accent: mat-palette($mat-pink);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Graphik, "Helvetica Neue", sans-serif;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    font-size: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Styrene", sans-serif !important;
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
+}
+
+.page-container {
+    min-height: calc(100vh);
+    width: 100vw;
+    padding: 120px 30px 60px;
+    overflow-x: hidden;
+}
+
+.page-title {
+    margin-top: -30px !important;
+    margin-bottom: 30px !important;
+}

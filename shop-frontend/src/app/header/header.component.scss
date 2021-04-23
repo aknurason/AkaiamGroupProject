@@ -1,0 +1,113 @@
+.header {
+    background: #fff;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+
+    .brand {
+        font-size: 24px;
+        font-family: 'Styrene';
+    }
+
+    .nav {
+        padding: 0;
+
+        .mat-list-item {
+            display: inline-block;
+            height: auto;
+            width: auto;
+
+            button {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .cart-button {
+        border: none;
+        background: none;
+        margin-right: 15px;
+
+        .quantity-label {
+            position: absolute;
+            border-radius: 50%;
+            background-color: #EB4B63;
+            color: #fff;
+            height: 20px;
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            right: 0px;
+            top: 0px;
+            font-size: 10px;
+        }
+    }
+
+
+}
+
+.cart-menu {
+    padding: 0;
+    max-width: 500px !important;
+
+    .cart-item {
+        display: flex;
+        height: fit-content;
+        line-height: initial;
+        padding-bottom: 7.5px;
+        padding-top: 7.5px;
+        background: #fff !important;
+
+        .image-container {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            min-width: 100px;
+            margin-right: 15px;
+
+            img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .info-block {
+            width: 250px;
+
+            .title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .quantity-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                font-size: 20px;
+            }
+        }
+
+        &:hover {
+            background: rgb(241, 241, 241) !important;
+        }
+
+        &:first-child {
+            padding-top: 15px;
+        }
+
+        &:last-child {
+            padding-bottom: 15px;
+        }
+    }
+}

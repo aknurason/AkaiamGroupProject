@@ -1,0 +1,23 @@
+<mat-card>
+  <a routerLink="/product/{{product.id}}">
+    <img mat-card-image [src]="product.imageURL" alt="product image">
+  </a>
+
+  <mat-card-content>
+    <a routerLink="/product/{{product.id}}">
+      <mat-card-title [title]="product.title">{{limitTextLength(product.title, 40)}}</mat-card-title>
+      <p class="subtitle">{{limitTextLength(product.subtitle, 50) }}</p>
+    </a>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <div class="product-quantity">
+      <button mat-icon-button (click)="setAddToCartQuantity(addToCartQuantity - 1)">-</button>
+      <div class="quantity">{{addToCartQuantity}}</div>
+      <button mat-icon-button (click)="setAddToCartQuantity(addToCartQuantity + 1)">+</button>
+    </div>
+    <button mat-stroked-button (click)="addToCart()">
+      Add to cart
+    </button>
+  </mat-card-actions>
+</mat-card>
