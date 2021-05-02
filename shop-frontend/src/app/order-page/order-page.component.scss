@@ -1,0 +1,157 @@
+.order-panel-container {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .order-panel {
+        margin: auto;
+        border: 1px solid rgb(238, 238, 238);
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 5px;
+        min-width: 900px;
+        width: 900px;
+        display: flex;
+
+        .order-summary {
+            max-height: calc(100vh - 250px);
+            height: calc(100vh - 250px);
+            width: 60%;
+            border-right: 1px solid #dbdbdb;
+            overflow-y: auto;
+            overflow-x: auto;
+
+            .empty-placeholder {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                font-size: 28px;
+
+                p {
+                    a {
+                        color: #e91e63;
+                        text-decoration: underline;
+                    }
+
+                    &:not(:last-child) {
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+
+            .order-item {
+                display: flex;
+                height: fit-content;
+                line-height: initial;
+                padding-bottom: 15px;
+                padding-top: 15px;
+                border-bottom: 1px solid #dbdbdb;
+                background: #fff !important;
+                padding-left: 30px;
+                padding-right: 30px;
+                width: 100%;
+
+                .image-container {
+                    position: relative;
+                    height: 100px;
+                    width: 100px;
+                    min-width: 100px;
+                    margin-right: 15px;
+
+                    img {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+
+                .info-block {
+                    width: 450px;
+
+                    .title {
+                        font-size: 20px;
+                        margin-bottom: 15px;
+                    }
+                }
+
+                .quantity-block {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        font-size: 20px;
+                    }
+                }
+
+                &:hover {
+                    background: rgb(241, 241, 241) !important;
+                }
+
+                &:first-child {
+                    border-top: 1px solid #dbdbdb;
+                    padding-top: 15px;
+                }
+
+                &:last-child {
+                    border-bottom: 1px solid #dbdbdb;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+
+        .right-summary {
+            padding-left: 30px;
+            padding-right: 30px;
+            width: 40%;
+
+            .price-summary {
+                padding-bottom: 15px;
+                font-size: 24px;
+                border-bottom: 1px solid #dbdbdb;
+                font-weight: 600;
+                margin-bottom: 30px;
+
+                .mat-hint {
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 15px;
+
+                button {
+                    margin: 15px 0;
+                }
+
+                .mat-hint {
+                    a {
+                        text-decoration: underline;
+                    }
+
+                    &.error {
+                        color: red;
+                    }
+                }
+
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}

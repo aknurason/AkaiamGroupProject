@@ -16,7 +16,7 @@ export class ProductCardComponent implements OnInit {
     description: 'Default description',
     categoryId: 0,
     price: 0,
-    imageURL: '',
+    image: '',
   };
 
   addToCartQuantity: number = 1;

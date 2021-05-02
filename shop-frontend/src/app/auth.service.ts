@@ -10,6 +10,14 @@ const apiURL = 'http://localhost:8000';
   providedIn: 'root',
 })
 export class AuthService {
+  register(username: string, password: string, email: string) {
+    return this.http.post(`${apiURL}/auth/register/`, {
+      username,
+      password,
+      email,
+    });
+  }
+
   login(username: string, password: string) {
     return this.http
       .post<User>(`${apiURL}/auth/login/`, { username, password })
@@ -43,6 +51,7 @@ export class AuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    window.location.reload();
   }
 
   public getUsername() {

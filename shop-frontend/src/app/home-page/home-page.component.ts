@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCTS } from 'src/backendData';
 import { Product } from 'src/types';
 import { ApiService } from '../api.service';
 

@@ -18,13 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { HttpClientModule } from '@angular/common/http';
-// Fake backend
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './jwt-interceptor';
+import { AuthGuard } from './can-activate-route.guard';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
     ProductCardComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    OrderPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,12 +45,6 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     NoopAnimationsModule,
     AppRoutingModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-    //   dataEncapsulation: false,
-    // }),
     FormsModule,
     MatFormFieldModule,
     MatListModule,
@@ -61,7 +56,14 @@ import { FormsModule } from '@angular/forms';
     MatGridListModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

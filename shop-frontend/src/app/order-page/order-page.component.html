@@ -1,0 +1,65 @@
+<div class="order-panel-container">
+  <div class="order-panel">
+    <div class="order-summary">
+      <ng-container *ngIf="cartService.items.length > 0">
+
+        <a routerLink="/product/{{item.product.id}}" class="order-item" mat-menu-item
+          *ngFor="let item of cartService.items">
+          <div class="image-container">
+            <img [src]="item.product.image" alt="product image">
+          </div>
+          <div class="info-block">
+            <div class="title">{{item.product.title}}</div>
+            <div class="price">{{item.product.price * item.quantity | currency: '₸ '}}</div>
+          </div>
+          <div class="quantity-block" (click)="$event.stopPropagation()">
+            <button mat-icon-button (click)="onCartDecrement($event, item.product.id)">-</button>
+            <div class="quantity">{{item.quantity}}</div>
+            <button mat-icon-button (click)="onCartIncrement($event, item.product.id)">+</button>
+          </div>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="cartService.items.length === 0">
+        <div class="empty-placeholder">
+          <p>Your cart is empty</p>
+          <p>
+            <a routerLink="/">Go to home page</a>
+          </p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="right-summary">
+      <div class="price-summary">
+        <p>
+          {{cartService.totalPrice | currency: '₸ '}}
+        </p>
+        <p>
+          <mat-hint>Total of {{cartService.totalItems}} item(s)</mat-hint>
+        </p>
+      </div>
+
+      <form (submit)="submitForm()" [class]="cartService.items.length === 0 ? 'disabled' : ''">
+        <h2>Order</h2>
+        <mat-form-field appearance="standard">
+          <mat-label>Country</mat-label>
+          <input matInput name="country" type="text" autocomplete="off" [(ngModel)]="orderData.country">
+          <mat-icon matSuffix>flag</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>City</mat-label>
+          <input matInput name="city" type="text" autocomplete="off" [(ngModel)]="orderData.city">
+          <mat-icon matSuffix>location_city</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Street</mat-label>
+          <input matInput name="street" type="text" autocomplete="off" [(ngModel)]="orderData.street">
+          <mat-icon matSuffix>house</mat-icon>
+        </mat-form-field>
+        <mat-hint *ngIf="orderData.showError" class="error">
+          {{orderData.error}}
+        </mat-hint>
+        <button type="submit" mat-raised-button color="accent">Order</button>
+      </form>
+    </div>
+  </div>
+</div>

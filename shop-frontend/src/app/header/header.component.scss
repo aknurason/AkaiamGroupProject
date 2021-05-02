@@ -50,7 +50,44 @@
 
 .cart-menu {
     padding: 0;
-    max-width: 500px !important;
+    min-width: 450px !important;
+    width: 450px !important;
+    max-width: 450px !important;
+    max-height: 500px !important;
+    min-height: initial !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+
+    .mat-menu-content:not(:empty) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    header,
+    footer {
+        height: 50px;
+        font-size: 20px;
+        width: 435spx;
+        display: flex;
+        align-items: center;
+        background-color: #fff !important;
+        z-index: 10;
+        padding: 8px 15px;
+        position: sticky;
+    }
+
+    header {
+        font-weight: 500;
+        box-shadow: 0 5px 8px #00000015;
+        top: 0px;
+    }
+
+    footer {
+        box-shadow: 0 -5px 8px #00000015;
+        bottom: 0px;
+        justify-content: space-between;
+    }
 
     .cart-item {
         display: flex;

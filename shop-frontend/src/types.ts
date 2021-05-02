@@ -11,11 +11,12 @@ export interface Product {
   description: string;
   categoryId: number;
   price: number;
-  imageURL: string;
+  image: string;
 }
 
 export interface CartItem {
   product: Product;
+  product_id: number;
   quantity: number;
 }
 

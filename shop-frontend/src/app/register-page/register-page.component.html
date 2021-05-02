@@ -1,1 +1,36 @@
-<p>register-page works!</p>
+<div class="login-panel-container">
+  <div class="login-panel">
+    <h2>Sign up</h2>
+    <form (submit)="submitForm()">
+      <mat-form-field appearance="standard">
+        <mat-label>Username</mat-label>
+        <input matInput name="email" type="text" autocomplete="off" [(ngModel)]="formData.username">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" type="text" autocomplete="off" [(ngModel)]="formData.email">
+        <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Password</mat-label>
+        <input matInput name="password" type="password" autocomplete="off" [(ngModel)]="formData.password">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Repeat Password</mat-label>
+        <input matInput name="password" type="password" autocomplete="off" [(ngModel)]="formData.passwordRepeat">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <mat-hint *ngIf="formData.showError" class="error">
+        {{formData.error}}
+      </mat-hint>
+      <button type="submit" mat-raised-button color="accent">Sign up</button>
+    </form>
+    <mat-hint>Already have an account?</mat-hint>
+    <br>
+    <mat-hint>
+      <a routerLink="/login">Log in</a>
+    </mat-hint>
+  </div>
+</div>

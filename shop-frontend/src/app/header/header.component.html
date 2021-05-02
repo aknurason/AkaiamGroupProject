@@ -19,21 +19,22 @@
 
   <div class="flex-spacer"></div>
 
-  <button class="cart-button" mat-icon-button [matMenuTriggerFor]="cartMenu">
+  <button class="cart-button" mat-icon-button [matMenuTriggerFor]="cartMenu" (click)="cartService.updateCart()">
     <mat-icon>shopping_basket</mat-icon>
     <div class="quantity-label">{{cartService.totalItems}}</div>
   </button>
 
   <mat-menu #cartMenu="matMenu" class="cart-menu">
     <ng-container *ngIf="cartService.items.length > 0">
+      <header (click)="$event.stopPropagation()">Your cart:</header>
       <a routerLink="/product/{{item.product.id}}" class="cart-item" mat-menu-item
         *ngFor="let item of cartService.items">
         <div class="image-container">
-          <img [src]="item.product.imageURL" alt="product image">
+          <img [src]="item.product.image" alt="product image">
         </div>
         <div class="info-block">
           <div class="title">{{item.product.title}}</div>
-          <div class="price">{{item.product.price * item.quantity | currency: 'KZT '}}</div>
+          <div class="price">{{item.product.price * item.quantity | currency: '₸ '}}</div>
         </div>
         <div class="quantity-block" (click)="$event.stopPropagation()">
           <button mat-icon-button (click)="onCartDecrement($event, item.product.id)">-</button>
@@ -41,6 +42,10 @@
           <button mat-icon-button (click)="onCartIncrement($event, item.product.id)">+</button>
         </div>
       </a>
+      <footer (click)="$event.stopPropagation()">
+        <div class="total-price">Total: {{cartService.totalPrice | currency: '₸ '}}</div>
+        <a routerLink="/order" mat-raised-button color="accent">Order</a>
+      </footer>
     </ng-container>
     <div mat-menu-item *ngIf="cartService.items.length === 0">
       <mat-icon>remove_shopping_cart</mat-icon> Your cart is empty

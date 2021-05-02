@@ -36,11 +36,9 @@ export class CatalogPageComponent implements OnInit {
   }
 
   getCategory() {
-    this.apiService
-      .getCategory(this.categoryId)
-      .subscribe((data: Category[]) => {
-        this.category = data[0];
-      });
+    this.apiService.getCategory(this.categoryId).subscribe((data: Category) => {
+      this.category = data;
+    });
   }
 
   ngOnInit(): void {
